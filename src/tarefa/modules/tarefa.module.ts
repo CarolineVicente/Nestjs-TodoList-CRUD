@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { TarefaController } from "src/controllers/tarefa.controller";
+import { TarefaController } from "../controllers/tarefa.controller";
 import { Tarefa } from "../entities/tarefa.entity";
 import { TarefaService } from "../service/tarefa.service";
 
