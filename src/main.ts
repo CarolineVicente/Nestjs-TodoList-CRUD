@@ -9,7 +9,7 @@ async function bootstrap() {
   const config = new DocumentBuilder()
   .setTitle('Todo Mobile')
   .setDescription('Projeto Todo Mobile')
-  .setContact("Henrique Felipe","http://www.generationbrasil.online","generation@email.com")
+  .setContact("Caroline Vicente","https://github.com/CarolineVicente","vicente.caroline@hotmail.com")
   .setVersion('1.0')
   .addBearerAuth()
   .build()
