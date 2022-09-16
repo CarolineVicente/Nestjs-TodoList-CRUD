@@ -1,44 +1,47 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put } from "@nestjs/common";
-import { Tarefa } from "src/tarefa/entities/tarefa.entity";
-import { TarefaService } from "src/tarefa/service/tarefa.service";
+import { ApiTags } from "@nestjs/swagger";
+import { Tarefa } from "../entities/tarefa.entity";
+import { TarefaService } from "../service/tarefa.service";
 
+@ApiTags('Tarefa')
 @Controller('/tarefa')
-export class TarefaController{
-  constructor(private readonly service: TarefaService) {}
+export class TarefaController {
+    constructor(private readonly service: TarefaService) {}
 
-  @Get()
-  @HttpCode(HttpStatus.OK)
-  findAll(): Promise<Tarefa[]>{
-    return this.service.findAll()
-  }
+    @Get()
+    @HttpCode(HttpStatus.OK)
+    findAll(): Promise<Tarefa[]> {
+        return this.service.findAll()
+    }
 
-  @Get('/:id')
-  @HttpCode(HttpStatus.OK)
-  findByid(@Param('id', ParseIntPipe) id:number): Promise<Tarefa>{
-    return this.service.findById(id)
-  }
+    @Get('/:id')
+    @HttpCode(HttpStatus.OK)
+    findById(@Param('id', ParseIntPipe) id: number): Promise<Tarefa> {
+        return this.service.findById(id)
+    }
 
-  @Get('/nome/:nome')
-  @HttpCode(HttpStatus.OK)
-  findByNome( @Param('nome') nome:string): Promise<Tarefa[]>{
-    return this.service.findByNome(nome)
-  }
+    @Get('/nome/:nome')
+    @HttpCode(HttpStatus.OK)
+    findByNome(@Param('nome') nome: string): Promise<Tarefa[]>{
+        return this.service.findByNome(nome)
+    }
 
-  @Post()
-  @HttpCode(HttpStatus.CREATED)
-  create(@Body() tarefa: Tarefa): Promise<Tarefa>{
-    return this.service.create(tarefa)
-  }
+    @Post()
+    @HttpCode(HttpStatus.CREATED)
+    create(@Body() tarefa: Tarefa): Promise<Tarefa> {
+        return this.service.create(tarefa)
+    }
 
-  @Put()
-  @HttpCode(HttpStatus.OK)
-  update(@Body() tarefa:Tarefa): Promise<Tarefa>{
-    return this.service.update(tarefa)
-  }
+    @Put()
+    @HttpCode(HttpStatus.OK)
+    update(@Body() tarefa: Tarefa): Promise<Tarefa> {
+        return this.service.update(tarefa)
+    }
 
-  @Delete('/:id')
-  @HttpCode(HttpStatus.NO_CONTENT)
-  delete(@Param ('id', ParseIntPipe) id:number){
-    return this.service.delete(id)
-  }
+    @Delete('/:id')
+    @HttpCode(HttpStatus.NO_CONTENT)
+    delete(@Param('id', ParseIntPipe) id: number){
+        return this.service.delete(id)
+    }
+
 }

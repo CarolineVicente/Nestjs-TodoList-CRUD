@@ -1,36 +1,45 @@
-import { IsNotEmpty, MaxLength } from 'class-validator';
-import { Categoria } from 'src/categoria/entities/categoria.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { ApiProperty } from "@nestjs/swagger";
+import { IsNotEmpty, MaxLength } from "class-validator";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Categoria } from "../../categoria/entities/categoria.entity";
 
-@Entity({ name: 'tb_tarefa' })
+@Entity({name: 'tb_tarefa'})
 export class Tarefa {
-  @PrimaryGeneratedColumn()
-  id: number;
 
-  @IsNotEmpty()
-  @MaxLength(50)
-  @Column({ nullable: false, length: 50 })
-  nome: string;
+    @PrimaryGeneratedColumn()
+    @ApiProperty()
+    id: number
 
-  @IsNotEmpty()
-  @MaxLength(500)
-  @Column({ nullable: false, length: 500 })
-  descricao: string;
+    @IsNotEmpty()
+    @MaxLength(50)
+    @Column({nullable: false, length: 50})
+    @ApiProperty()
+    nome: string
 
-  @IsNotEmpty()
-  @MaxLength(50)
-  @Column({ nullable: false, length: 50 })
-  responsavel: string;
+    @IsNotEmpty()
+    @MaxLength(500)
+    @Column({nullable: false, length: 500})
+    @ApiProperty()
+    descricao: string
 
-  @Column()
-  date: Date;
+    @IsNotEmpty()
+    @MaxLength(50)
+    @Column({nullable: false, length: 50})
+    @ApiProperty()
+    responsavel: string
 
-  @Column()
-  status: boolean;
+    @Column()
+    @ApiProperty()
+    data: Date
 
-  @ManyToOne(()=> Categoria, (categoria) => categoria.tarefas, {
-    onDelete: "CASCADE"
-  })
-  categoria: Categoria
+    @Column()
+    @ApiProperty()
+    status: boolean
+
+    @ManyToOne(() => Categoria, (categoria) => categoria.tarefas, {
+        onDelete: "CASCADE"
+    })
+    @ApiProperty({type: () => Categoria})
+    categoria: Categoria
 
 }
