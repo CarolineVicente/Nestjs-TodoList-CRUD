@@ -20,7 +20,7 @@ import { TarefaModule } from './tarefa/modules/tarefa.module';
     */
     TypeOrmModule.forRoot({
       type: 'postgres',
-      url: 'process.env.DATABASE_URL',
+      url: process.env.DATABASE_URL,
       logging: false,
       dropSchema: false,
       ssl: {
